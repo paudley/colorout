@@ -1,0 +1,188 @@
+output:
+  format: colored-line-number
+  sort-results: true
+
+run:
+  tests: true
+  deadline: 2m
+  skip-dirs:
+  exclude-use-default: false
+  allow-parallel-runners: true
+
+linters-settings:
+  errcheck:
+    check-type-assertions: true
+  goconst:
+    numbers: true
+    min-occurances: 2
+  gocritc:
+    enabled-checks:
+      - diagnostic
+      - style
+      - performance
+    enabled-tags:
+      - diagnostic
+      - performance
+      - experimental
+      - style
+  gocyclo:
+    min-complexity: 200
+  gofumpt:
+    extra-rules: true
+  golint:
+    min-confidence: 0
+  govet:
+    check-shadowing: true
+  gosec:
+    exclude-generated: false
+  lll:
+    line-length: 180
+    tab-width: 2
+  maligned:
+    suggest-new: true
+  prealloc:
+    simple: true
+    range-loops: true
+    for-loops: true
+  unused:
+    go: "1.19"
+  revive:
+    enable-all-rules: true
+    ignore-generated-header: true
+    rules:
+      # https://github.com/mgechev/revive/blob/master/RULES_DESCRIPTIONS.md#unexported-return
+      - name: add-constant
+        disabled: true
+      - name: unexported-return
+        disabled: true
+      - name: function-result-limit
+        disabled: true
+      - name: cognitive-complexity
+        disabled: true
+      - name: cyclomatic
+        disabled: true
+      - name: banned-characters
+        disabled: true
+      - name: line-length-limit
+        disabled: true
+      - name: max-public-structs
+        arguments: [10]
+      - name: unhandled-error
+        disabled: true
+      - name: var-naming
+        disabled: true
+      - name: function-length
+        disabled: true
+      - name: argument-limit
+        disabled: true
+      - name: file-header
+        arguments:
+          - "Copyright"
+
+linters:
+  enable-all: true
+    #  enable:
+    #- asciicheck
+    #- bidichk
+    #- bodyclose
+    #- contextcheck
+    #- cyclop
+    #- deadcode
+    #- depguard
+    #- dogsled
+    #- dupl
+    #- durationcheck
+    #- errname
+    #- errorlint
+    #- exhaustive
+    #- exportloopref
+    #- forbidigo
+    #- forcetypeassert
+    #- funlen
+    #- gci
+    #- goconst
+    #- gocritic
+    #- gocyclo
+    #- godot
+    #- godox
+    #- goerr113
+    #- gofmt
+    #- goheader
+    #- gomnd
+    #- gomodguard
+    #- goprintffuncname
+    #- gosec
+    #- govet
+    #- ifshort
+    #- importas
+    #- makezero
+    #- megacheck
+    #- misspell
+    #- nakedret
+    #- nilerr
+    #- nilnil
+    #- nlreturn
+    #- noctx
+    #- nolintlint
+    #- paralleltest
+    #- predeclared
+    #- prealloc
+    #- promlinter
+    #- revive
+    #- rowserrcheck
+    #- sqlclosecheck
+    #- tagliatelle
+    #- staticcheck
+    #- stylecheck
+    #- tenv
+    #- testpackage
+    #- thelper
+    #- tparallel
+    #- unconvert
+    #- unparam
+    #- unused
+    #- varnamelen
+    #- wastedassign
+    #- whitespace
+    #- wrapcheck
+    #- wsl
+    #- nestif
+    #- gocognit
+    #- typecheck
+    #- gochecknoglobals
+    #- gochecknoinits
+    #- goimports
+    #- lll
+    #- nosprintfhostport
+    #- maintidx
+    #- ireturn
+    #- grouper
+    #- execinquery
+    #- errchkjson
+    #- decorder
+    #- containedctx
+  disable:
+    - interfacer
+    - exhaustivestruct
+    - exhaustruct
+    - gofumpt
+    - gomoddirectives
+    - golint
+    - varcheck
+    - ifshort
+    - deadcode
+    - maligned
+    - scopelint
+    - structcheck
+    - nosnakecase
+    - rowserrcheck
+    - sqlclosecheck
+    - wastedassign
+    - nolintlint
+    - depguard
+    - forbidigo
+    - gochecknoglobals
+issues:
+  max-issues-per-linter: 0
+  max-same-issues: 0
+  fix: false
