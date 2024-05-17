@@ -1,4 +1,5 @@
 // Copyright (C) 2022-2024 by Blackcat Informatics® Inc.
+//nolint
 package colorout_test
 
 import (
