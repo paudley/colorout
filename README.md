@@ -1,6 +1,6 @@
 # colorout
 
-![GoDoc](https://img.shields.io/badge/godoc-reference-blue.svg)](http://godoc.org/github.com/paudley/colorout)
+![GoDoc](https://img.shields.io/badge/godoc-reference-blue.svg)
 ![GitHub License](https://img.shields.io/github/license/paudley/colorout)
 ![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/paudley/colorout)
 
