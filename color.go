@@ -1,4 +1,29 @@
-// Copyright (C) 2022, 2023, 2024 by Blackcat Informatics® Inc.
+/* Copyright (C) 2022, 2023, 2024 by Blackcat Informatics® Inc.
+ *
+ * Permission to use, copy, modify, and distribute this software for any
+ * purpose with or without fee is hereby granted, provided that the above
+ * copyright notice and this permission notice appear in all copies.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+ * WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ * ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+ * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+ * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+ */
+
+/*
+Package colorout implements a colorizing and formatting wrapper
+around Dave Collin's Spew Go data structure dumping utility.
+
+Changes and additions above and beyond Spew:
+
+  - syntax highlight of strings via https://github.com/chroma/quick
+  - a specific colored dumper for JSON strings
+  - a console output version of spew.Dump that supports
+    more readable and visual segmented output
+*/
 package colorout
 
 import (
@@ -16,6 +41,8 @@ var normal = spew.ConfigState{
 	SortKeys: true,
 }
 
+// Sdump provides a slightly console optimized version of spew.Sdump; returning
+// a string representation of a given Go variable.
 func Sdump(i any) string {
 	return normal.Sdump(i)
 }
@@ -42,6 +69,7 @@ var simple = &spew.ConfigState{
 
 var simpleStripRe = regexp.MustCompile(`\(len=\d+\)\s?`)
 
+// SimpleColorString performs syntax highlight on a string and returns it.
 func SimpleColorString(language, str string) string {
 	strReplaced := simpleStripRe.ReplaceAllString(str, "")
 
@@ -93,6 +121,7 @@ var (
 	BlackOnYellow  = color.New(color.BgHiYellow, color.FgBlack)
 )
 
+// Dump produces a formatted and colorized data-structure dump to the console.
 func Dump(name string, object ...any) {
 	color.NoColor = false
 	title := White.SprintfFunc()
